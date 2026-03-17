@@ -67,7 +67,6 @@ def get_uploaded_images():
                 img_list.append(file)
     return img_list
 
-
 @app.route('/uploads/<filename>')
 def get_image(filename):
     return send_from_directory(
