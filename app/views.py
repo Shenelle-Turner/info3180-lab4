@@ -58,6 +58,15 @@ def login():
 
     return render_template("login.html", form=form)
 
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('home'))
+
+
 def get_uploaded_images():
     rootdir = os.getcwd()
     img_list = []
@@ -66,6 +75,7 @@ def get_uploaded_images():
             if not file.startswith('.'):  # filters out .gitkeep and any hidden files
                 img_list.append(file)
     return img_list
+
 
 @app.route('/uploads/<filename>')
 def get_image(filename):
